@@ -88,7 +88,7 @@ bool Events::isJustClicked(int keycode) {
 
 bool Events::isClicked(int keycode) {
   int index = MOUSE_BUTTON_OFFSET + keycode;
-  if (!utils::in_between(index,  MOUSE_BUTTON_OFFSET, 1031))
+  if (!utils::in_between(index, MOUSE_BUTTON_OFFSET, 1031))
     return false;
   if (!keys || !frames) return false;
   return keys[index] && frames[index] == current;
@@ -129,17 +129,19 @@ void Events::detachCamera() {
 void Events::updateCamera() {
   if (!camera) return;
   if (isJustPressed(GLFW_KEY_W))
-    camera->moveX(0.05);
+    camera->moveZ(0.05f);
   if (isJustPressed(GLFW_KEY_S))
-    camera->moveX(-0.05);
+    camera->moveZ(-0.05f);
   if (isJustPressed(GLFW_KEY_A))
-    camera->moveZ(-0.05);
+    camera->moveX(-0.05f);
   if (isJustPressed(GLFW_KEY_D))
-    camera->moveZ(0.05);
+    camera->moveX(0.05f);
+
   if (isJustPressed(GLFW_KEY_SPACE))
-    camera->moveY(0.05);
+    camera->moveY(0.05f);
   else if (isJustPressed(GLFW_KEY_LEFT_SHIFT))
-    camera->moveY(-0.05);
+    camera->moveY(-0.05f);
+
 
   if (cursorLocked && (deltaX != 0.0f || deltaY != 0.0f)) {
     float sensitivity = 0.1f;
