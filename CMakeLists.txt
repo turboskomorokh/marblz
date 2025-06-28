@@ -12,6 +12,8 @@ find_package(glm REQUIRED)
 find_package(PNG REQUIRED)
 find_package(spdlog REQUIRED)
 
+
+
 add_executable(marbl main.cpp
         game/Window.cpp
         game/Events.cpp

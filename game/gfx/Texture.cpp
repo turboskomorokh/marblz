@@ -12,8 +12,6 @@ void flipImageVertically(unsigned char* data, int width, int height, int channel
   for (int y = 0; y < height / 2; ++y) {
     unsigned char* top = data + y * rowSize;
     unsigned char* bottom = data + (height - 1 - y) * rowSize;
-
-    // Обмен строк местами
     memcpy(tempRow.data(), top, rowSize);
     memcpy(top, bottom, rowSize);
     memcpy(bottom, tempRow.data(), rowSize);
@@ -42,7 +40,6 @@ Texture TextureManager::LoadTexturePNG(const std::string &path) {
     throw std::runtime_error("Failed to open file: " + path);
   }
 
-  // Проверяем сигнатуру PNG
   png_byte header[8];
   fread(header, 1, 8, fp);
   if (png_sig_cmp(header, 0, 8)) {
@@ -50,7 +47,6 @@ Texture TextureManager::LoadTexturePNG(const std::string &path) {
     throw std::runtime_error("Not a PNG file: " + path);
   }
 
-  // Создаём структуры libpng
   png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
   if (!png_ptr) {
     fclose(fp);
@@ -65,7 +61,7 @@ Texture TextureManager::LoadTexturePNG(const std::string &path) {
   }
 
   if (setjmp(png_jmpbuf(png_ptr))) {
-    // Ошибка при чтении PNG
+    // PNG Read error
     png_destroy_read_struct(&png_ptr, &info_ptr, nullptr);
     fclose(fp);
     throw std::runtime_error("Error during png read");
@@ -84,7 +80,6 @@ Texture TextureManager::LoadTexturePNG(const std::string &path) {
   png_byte color_type = png_get_color_type(png_ptr, info_ptr);
   png_byte bit_depth = png_get_bit_depth(png_ptr, info_ptr);
 
-  // Приводим данные к формату RGBA 8 бит
   if (bit_depth == 16)
     png_set_strip_16(png_ptr);
 
@@ -105,7 +100,6 @@ Texture TextureManager::LoadTexturePNG(const std::string &path) {
 
   png_read_update_info(png_ptr, info_ptr);
 
-  // Читаем строки изображения
   std::vector<png_bytep> row_pointers(height);
   std::vector<unsigned char> image_data(height * width * 4);
   for (size_t i = 0; i < height; ++i) {

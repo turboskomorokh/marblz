@@ -40,7 +40,7 @@ int main() {
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(triverts), triverts, GL_STATIC_DRAW);
 
-  // Настройка атрибутов
+  // Attributes
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(trivert), static_cast<void *>(nullptr));
   glEnableVertexAttribArray(0);
 
