@@ -13,6 +13,11 @@ find_package(PNG REQUIRED)
 find_package(spdlog REQUIRED)
 
 add_executable(marbl main.cpp
-        gfx/WindowSystem.cpp)
+        game/Window.cpp
+        game/Events.cpp
+        game/gfx/Shader.cpp
+        game/gfx/Texture.cpp
+        game/Camera.cpp
+)
 
 target_link_libraries(marbl PRIVATE OpenGL::GL glfw GLEW::glew glm::glm PNG::PNG spdlog::spdlog)
