@@ -3,12 +3,13 @@
 #include <GL/glew.h>
 #include <glm/vec2.hpp>
 
-#include "game/Camera.h"
-#include "game/Events.h"
-#include "game/Window.h"
-#include "game/gfx/Geometry.h"
-#include "game/gfx/Shader.h"
-#include "game/gfx/Texture.h"
+#include "engine/Camera.h"
+#include "engine/Events.h"
+#include "engine/Window.h"
+#include "engine/assets/ImageManager.hpp"
+#include "engine/gfx/Geometry.h"
+#include "engine/gfx/Shader.h"
+#include "engine/gfx/Texture.h"
 
 using namespace marblz;
 
@@ -36,7 +37,7 @@ int main() {
 
   Events::attachCamera(&camera);
 
-  gfx::Texture texture = gfx::TextureManager::LoadTexturePNG("./res/texture.png");
+  gfx::Texture texture = gfx::TextureManager::Load(assets::ImageManager::loadPNG("./res/texture.png"));
   while (!Window::shouldClose()) {
     glm::mat4 mvp = Window::getProjection() * camera.getViewMatrix() * glm::mat4(1.0f);
     Events::poll();

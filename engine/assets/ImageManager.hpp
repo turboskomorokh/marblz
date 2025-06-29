@@ -7,10 +7,12 @@
 
 #include "Image.hpp"
 
-class ImageManager
-{
-  static Image loadPNG(const char *path);
-};
+namespace marblz::assets {
+  class ImageManager {
+  public:
+    static Image loadPNG(const char *path);
+  };
+}
 
 
 #endif //MARBL_IMAGEMANAGER_HPP

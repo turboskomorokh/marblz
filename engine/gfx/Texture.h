@@ -4,14 +4,8 @@
 
 #ifndef TEXTURE_H
 #define TEXTURE_H
-#include <string>
-#include <GL/glew.h>
 
-#include <png.h>
-#include <GL/gl.h>
-#include <stdexcept>
-#include <vector>
-#include <fstream>
+#include "engine/assets/Image.hpp"
 
 namespace marblz::gfx {
   class Texture {
@@ -26,7 +20,7 @@ namespace marblz::gfx {
 
   class TextureManager {
   public:
-    static Texture LoadTexturePNG(const std::string &path);
+    static Texture Load(const assets::Image& img);
   };
 }
 

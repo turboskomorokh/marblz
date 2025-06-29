@@ -13,12 +13,13 @@ find_package(PNG REQUIRED)
 find_package(spdlog REQUIRED)
 
 add_executable(marbl main.cpp
-        game/Window.cpp
-        game/Events.cpp
-        game/gfx/Shader.cpp
-        game/gfx/Texture.cpp
-        game/Camera.cpp
-        game/gfx/Geometry.cpp
+        engine/Window.cpp
+        engine/Events.cpp
+        engine/gfx/Shader.cpp
+        engine/gfx/Texture.cpp
+        engine/Camera.cpp
+        engine/gfx/Geometry.cpp
+        engine/assets/ImageManager.cpp
 )
 
 add_custom_command(TARGET marbl POST_BUILD
@@ -27,4 +28,5 @@ add_custom_command(TARGET marbl POST_BUILD
         $<TARGET_FILE_DIR:marbl>/res
 )
 
+target_include_directories(marbl PUBLIC ${CMAKE_SOURCE_DIR})
 target_link_libraries(marbl PRIVATE OpenGL::GL glfw GLEW::glew glm::glm PNG::PNG spdlog::spdlog)

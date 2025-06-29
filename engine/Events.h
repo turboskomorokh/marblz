@@ -4,11 +4,10 @@
 
 #ifndef EVENTS_H
 #define EVENTS_H
-#include <memory>
-#include <GLFW/glfw3.h>
+
 #include <sys/types.h>
 
-#include "Camera.h"
+#include "engine/Camera.h"
 
 namespace marblz {
   class Events {
