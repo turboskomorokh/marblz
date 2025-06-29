@@ -4,6 +4,7 @@
 
 #include "Camera.h"
 
+namespace marblz {
   Camera::Camera(glm::vec3 pos, glm::vec3 upDir, float yawDeg, float pitchDeg): position(pos), worldUp(upDir), yaw(yawDeg), pitch(pitchDeg) {
     updateVectors();
   }
@@ -35,3 +36,4 @@
     right = glm::normalize(glm::cross(front, worldUp));
     up    = glm::normalize(glm::cross(right, front));
   }
+}

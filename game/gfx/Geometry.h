@@ -4,18 +4,35 @@
 
 #ifndef GEOMETRY_H
 #define GEOMETRY_H
+#include <vector>
 #include <glm/glm.hpp>
 
-struct Vertex {
-  glm::vec3 Position;
-  glm::vec2 UV;
-  glm::vec3 Normal;
-};
+namespace marblz::gfx::geometry {
+  struct Vertex {
+    glm::vec3 position;
+    glm::vec2 uv;
+    glm::vec3 normal;
+  };
 
-class Mesh {
+  class Mesh {
+    std::vector<Vertex> vertices;
+    std::vector<unsigned int> indices;
+    unsigned int VAO = 0, VBO = 0, EBO = 0;
 
-};
+  public:
+    Mesh();
+    Mesh(const std::vector<Vertex> &vertices,
+         const std::vector<unsigned int> &indices);
+    ~Mesh();
+    void update(const std::vector<Vertex> &vertices, const std::vector<unsigned int> &indices);
 
 
+    void draw() const;
+
+  private:
+    void build();
+    void clean();
+  };
+}
 
 #endif //GEOMETRY_H

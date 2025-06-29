@@ -9,7 +9,9 @@
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 
-static const std::string defaultVertexShaderSource = R"(
+namespace marblz::gfx {
+
+  static const std::string DefaultVertexShaderSource = R"(
 #version 330 core
 layout(location = 0) in vec3 v_position;
 layout(location = 1) in vec2 v_texCoord;
@@ -26,7 +28,7 @@ void main() {
 }
 )";
 
-static const std::string defaultFragmentShaderSource = R"(
+  static const std::string DefaultFragmentShaderSource = R"(
 #version 330 core
 in vec2 a_texCoord;
 out vec4 frag_color;
@@ -38,23 +40,22 @@ void main() {
 }
 )";
 
-class Shader {
-public:
-  Shader();
-  Shader(const std::string &vertexSource, const std::string &fragmentSource);
-  ~Shader();
+  class Shader {
+  public:
+    Shader();
+    Shader(const std::string &vertexSource, const std::string &fragmentSource);
+    ~Shader();
 
-  int compile();
+    int compile();
 
-  void bind() const;
-  void unbind() const;
+    void bind() const;
+    void unbind() const;
 
-  void setMat4(const char* name, glm::mat4 mvp);
+    void setMat4(const char *name, glm::mat4 mvp);
 
-private:
-  std::string vertexSource, fragmentSource;
-  unsigned int id;
-};
-
-
+  private:
+    std::string vertexSource, fragmentSource;
+    unsigned int id;
+  };
+}
 #endif //SHADER_H

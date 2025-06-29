@@ -8,25 +8,26 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-class Camera {
-public:
-  glm::vec3 position;
-  glm::vec3 front{};
-  glm::vec3 up{} ;
-  glm::vec3 right{};
-  const glm::vec3 worldUp{0.0f, 1.0f, 0.0f};
+namespace marblz {
+  class Camera {
+  public:
+    glm::vec3 position;
+    glm::vec3 front{};
+    glm::vec3 up{};
+    glm::vec3 right{};
+    const glm::vec3 worldUp{0.0f, 1.0f, 0.0f};
 
-  float yaw;
-  float pitch;
+    float yaw;
+    float pitch;
 
-  Camera(glm::vec3 pos, glm::vec3 upDir, float yawDeg, float pitchDeg);
-  [[nodiscard]] glm::mat4 getViewMatrix() const;
+    Camera(glm::vec3 pos, glm::vec3 upDir, float yawDeg, float pitchDeg);
+    [[nodiscard]] glm::mat4 getViewMatrix() const;
 
-  void moveX(float delta);
-  void moveY(float delta);
-  void moveZ(float delta);
-  void updateVectors();
-};
-
+    void moveX(float delta);
+    void moveY(float delta);
+    void moveZ(float delta);
+    void updateVectors();
+  };
+}
 
 #endif //CAMERA_H
